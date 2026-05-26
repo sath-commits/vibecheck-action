@@ -1,0 +1,61 @@
+name: 'VibeCheck'
+description: 'Run VibeCheck launch-readiness checks on a URL and gate your PR on score plus blockers'
+author: 'Sathappan'
+
+inputs:
+  url:
+    description: 'URL to audit (must be publicly reachable)'
+    required: true
+  api_url:
+    description: 'VibeCheck app URL'
+    required: false
+    default: 'https://vibecheck.builtthisweekend.com'
+  fail_below:
+    description: 'Fail the action step if Vibe Score is below this value (0-100)'
+    required: false
+    default: '60'
+  block_on:
+    description: 'Comma-separated severities that fail the gate when a matching FAIL result is found'
+    required: false
+    default: 'CRITICAL,HIGH'
+  privacy:
+    description: 'Audit privacy: private or public'
+    required: false
+    default: 'private'
+  comment_mode:
+    description: 'PR comment mode: update, new, or off'
+    required: false
+    default: 'update'
+  auth_login_url:
+    description: 'Optional login URL for authenticated deep audit'
+    required: false
+  auth_username:
+    description: 'Optional test username/email for authenticated deep audit'
+    required: false
+  auth_password:
+    description: 'Optional test password for authenticated deep audit'
+    required: false
+
+outputs:
+  score:
+    description: 'The Vibe Score (0-100)'
+  band:
+    description: 'Score band label (e.g. "Ship it", "Almost there")'
+  audit_id:
+    description: 'The audit ID for linking to the full report'
+  audit_url:
+    description: 'Full URL to the audit report'
+  fail_count:
+    description: 'Number of failing results'
+  warn_count:
+    description: 'Number of warning results'
+  blocker_count:
+    description: 'Number of blocking findings'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
