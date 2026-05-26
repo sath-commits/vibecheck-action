@@ -1,4 +1,4 @@
-name: 'VibeCheck'
+name: 'VibeCheck Launch Readiness'
 description: 'Run VibeCheck launch-readiness checks on a URL and gate your PR on score plus blockers'
 author: 'Sathappan'
 
