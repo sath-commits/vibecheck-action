@@ -1,6 +1,6 @@
 # VibeCheck Launch Readiness Action
 
-Run 162 automated launch-readiness checks on your staging URL and gate every PR on a Vibe Score.
+Run 212 automated launch-readiness checks on your staging URL and gate every PR on a Vibe Score.
 
 Checks auth, payments, database, API, frontend, mobile, performance, security, SEO, legal, and more — then posts a full report as a PR comment.
 
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run VibeCheck
-        uses: Sathappan/vibecheck-action@v1
+        uses: sath-commits/vibecheck-action@v1
         with:
           url: https://your-staging-app.vercel.app
           fail_below: 60
@@ -61,30 +61,33 @@ jobs:
 
 ## What gets checked
 
-162 automated checks across 16 categories:
+212 automated checks across 18 categories:
 
-- **Auth** — login flows, session handling, auth guards
-- **Payments** — Stripe integration, webhook handling, receipt emails
-- **Database** — connection errors, N+1 queries, missing indexes
-- **API** — error handling, rate limits, CORS, response times
-- **Frontend** — console errors, broken links, missing meta tags
-- **Mobile** — viewport, tap targets, iOS zoom, horizontal scroll
-- **Performance** — LCP, CLS, TTFB, bundle size
-- **Security** — CSP headers, exposed keys, HTTPS, XSS vectors
-- **SEO** — title, description, sitemap, robots.txt
-- **Legal** — privacy policy, cookie consent, terms of service
-- **Email** — transactional email, SPF/DKIM, reply-to
-- **AI** — rate limiting on AI endpoints, key exposure
-- **Content** — broken images, placeholder text, favicon
-- **Observability** — error tracking, logging, request IDs
-- **Launch** — social share, OG tags, trust signals
+- **Authentication** (18) - login flows, session management, OAuth, magic links
+- **Payments** (14) - Stripe integration, webhooks, subscription management
+- **Database** (10) - RLS policies, pagination, error states, validation
+- **API** (12) - endpoint security, CORS, rate limiting, error handling
+- **Frontend** (16) - loading states, error boundaries, form UX, accessibility
+- **Mobile** (10) - responsive layout, touch targets, viewport, iOS issues
+- **Performance** (15) - bundle size, image optimization, TTFB, LCP, caching
+- **Security** (18) - CSP, HTTPS, CSRF, mixed content, admin protection
+- **Email** (9) - SPF, DKIM, unsubscribe, confirmation flows
+- **AI Safety** (18) - key exposure, direct AI calls, rate limiting, prompt leakage
+- **SEO Basics** (15) - title, meta description, OG tags, sitemap, canonical, alt text
+- **Legal** (8) - privacy policy, ToS, cookie consent, contact info, copyright
+- **Content** (11) - placeholder titles, broken images, favicon, 404 page, generic copy
+- **Production Readiness** (8) - dev mode, sourcemaps, debug routes, localhost URLs, cache headers
+- **Observability** (5) - error monitoring, analytics, health endpoint, feedback, tracing
+- **Launch Readiness** (6) - CTA above fold, autoplay video, hero content, social proof, demo
+- **Accessibility** (14) - keyboard access, focus, semantics, assistive technology, motion
+- **Privacy** (5) - consent, tracking, browser storage, personal data exposure
 
 ## Authenticated pass
 
 To test behind a login, create a throwaway test account in your app and pass the credentials:
 
 ```yaml
-- uses: Sathappan/vibecheck-action@v1
+- uses: sath-commits/vibecheck-action@v1
   with:
     url: https://your-staging-app.vercel.app
     auth_username: test@yourapp.com
